@@ -1,0 +1,40 @@
+Digital differential analyzer (DDA) is used for linear interpolation of variables over an interval between 
+given start, end points and for rasterization of lines, triangles and polygons.
+Using DDA Algorithm, Write a C-Program to draw a line segment between two given points.
+Aim: To implement DDA Algorithm for drawing a line segment between two given end points A (x1, y1)
+and B(x2, y2).
+Description: DDA algorithm is an incremental scan conversion method. Here we perform calculations 
+at each step using the results from the preceding step. The characteristic of the DDA algorithm is to take 
+unit steps along one coordinate and compute the corresponding values along the other coordinate. The 
+unit steps are always along the coordinate of greatest change, e.g. if dx = 10 and dy = 5, then we would 
+take unit steps along x and compute the steps along y.
+In DDA we need to consider two cases;
+One is slope of the line less than or equal to one (|m| ≤1) and slope of the line greater than one (m|> 1).
+1) When |m| ≤ 1 means y2-y1 = x2-x1 or y2-y1 <x2-x1.In both these cases we assume x to be the major
+axis. Therefore we sample x axis at unit intervals and find the y values corresponding to each x value. 
+We have the slope equation as
+∆ y = m ∆ x
+y2-y1 = m (x2-x1)
+In general terms we can say that y i+1 - yi = m(x i+1 - xi ). But here ∆ x = 1; therefore the equation
+reduces to y i+1= yi + m = yi + dy/dx.
+2) When | m| > 1 means y2-y1> x2-x1 and therefore we assume y to be the major axis. Here we sample 
+y axis at unit intervals and find the x values corresponding to each y value. We have the slope
+equation as
+Algorithm:
+1. Start.
+∆ y = m ∆ x
+y2-y1 = m (x2-x1)
+2. Declare variables x,y,x1,y1,x2,y2,k,dx,dy,s,xi,yi and also declare 
+gdriver=DETECT, mode.
+3. Initialize the graphic mode with the path location in TurboC3 folder.
+4. Input the two line end-points and store the left end-points in (x1,y1).
+5. Load (x1, y1) into the frame buffer; that is, plot the first point. put x=x1,y=y1.
+6. Calculate dx=x2-x1 and dy=y2-y1.
+7. If abs (dx) > abs (dy), do s=abs(dx).
+8. Otherwise s= abs(dy).
+9. Then xi=dx/s and yi=dy/s.
+10. Start from k=0 and continuing till k<s,the points will be 
+i. x=x+xi.
+ii. Y=y+yi.
+11. Plot pixels using putpixel at points (x,y) in specified colour.
+12. Close Graph and stop.
