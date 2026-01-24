@@ -1,0 +1,31 @@
+. Introduction
+In computer graphics, an ellipse is drawn on a raster display by plotting pixels that best approximate the mathematical shape. Since displays work with discrete pixels, special algorithms are used to efficiently generate ellipses using integer arithmetic and symmetry.
+The most commonly used algorithm is the Midpoint Ellipse Algorithm.
+
+Algorithm:
+
+1. Input r xx ry, and ellipse center (x_{c}, y_{c}) and obtain the first point on an ellipse centered on the origin as
+
+(x_{0}, y_{0}) = (0, r_{y})
+
+2. Calculate the initial parameter in region 1 as p1 0 = r_{y} ^ 2 - r_{x} ^ 2 * r_{y} + 1/4 * r_{x} ^ 2
+
+3. At each x_{1} position, starting at i = 0 if p1 i < 0 , the next point along the ellipse centered on (0, 0) is (x_{i} + 1, y_{i}) and p1 i+1 =p1 i + 2r ^ 2 x y i+1 y
+
+Otherwise, the next point is (x_{i} + 1, y_{i} - 1) and and continue until p^ 1 i+1 = p^ 1 i + 2r_{y} ^ 2 x i+1 -2 r x ^ 2 y i+1 +r y ^ 2 2r_{y} ^ 2 * x >= 2r_{x} ^ 2 * y
+
+4. (x_{0}, y_{0}) is the last position calculated in region 1. Calculate the initial parameter in region 2 as p 2 0 = r_{y} ^ 2 * (x_{0} + 1/2) ^ 2 + r_{x} ^ 2 * (y_{0} - 1) ^ 2 - r_{x} ^ 2 * r_{y} ^ 2
+
+5. At each y_{i} position, starting at i = 0 if p2 i > 0 , the next point along the ellipse centered on (0,
+
+0) is (x_{i}, y_{i} - 1) and P^ 2 i+1 = p_{i} - 2r ^ 2 &y&+r^ 2 \\ x&&x matrix
+
+Otherwise, the next point is (x_{i} + 1, y_{i} - 1) and p 2 i+1 =p 2 i + 2r_{y} ^ 2 x i+1 -2 r x ^ 2 y i+1 +r x ^ 2
+
+Use the same incremental calculations as in region 1. Continue until y = 0
+
+6. For both regions determine symmetry points in the other three quadrants.
+
+7. Move each calculated pixel position (x, y) onto the elliptical path centered on ( x ,y c ); and plot the coordinate values
+
+x = x + x_{c} , y = y + y_{c}
